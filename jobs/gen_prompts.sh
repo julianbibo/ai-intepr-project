@@ -11,6 +11,8 @@ cd ~/ai-intepr-project
 module purge
 module load 2023
 module load Anaconda3/2023.07-2
+source activate myenv
 
-# run
+##################################################
+
 python src/generate_prompts.py
