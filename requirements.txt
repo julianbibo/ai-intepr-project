@@ -1,0 +1,11 @@
+# for python3.10
+torch --index-url https://download.pytorch.org/whl/cu118
+torchvision --index-url https://download.pytorch.org/whl/cu118
+torchaudio --index-url https://download.pytorch.org/whl/cu118
+pympler
+git+https://github.com/Marcel-Velez/audiocraft.git
+git+https://github.com/kkoutini/passt_hear21.git
+# git+https://github.com/Marcel-Velez/IE-in-AI-parler-workshop.git
+wandb
+python-dotenv
+
