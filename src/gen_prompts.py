@@ -7,37 +7,39 @@ MUSIC MODELS (2024) Vásquez et al.
 import os
 
 
-MOODS = ["happy", "sad", "energetic", "calm", "dramatic"]
-GENRES = ["jazz", "classical", "rock", "pop", "edm", "hip hop"]
+MOODS = ["happy", "sad", "energetic", "calm", "dramatic", "uplifting", "tense"]
+GENRES = ["jazz", "classical", "rock", "pop", "edm", "hip hop", "country"]
 COMPOSITIONS = ["song", "jingle", "piece"]
 INSTRUMENTS = ["piano", "guitar", "trumpet", "violin"]
 TEMPOS = ["fast", "slow", "moderate"]
+VERBS = ["Compose", "Create", "Generate"]
+TOTAL_PROMPTS = len(MOODS) * len(GENRES) * len(TEMPOS) * len(COMPOSITIONS) * len(VERBS)
 
 
-def generate_prompt(mood, genre, composition, instrument, tempo):
+def generate_prompt(verb, mood, genre, composition, instrument, tempo) -> str:
     """
     Generate a music prompt based on the given parameters.
     """
 
-    return f"Compose a {mood} {genre} {composition} with a {instrument} melody. Use a {tempo} tempo."
+    return f"{verb} a {mood} {genre} {composition} with a {instrument} melody. Use a {tempo} tempo."
 
 
-def generate_instrument_prompt(instrument):
+def generate_instrument_prompt(instrument) -> None:
     """
     Helper function to generate prompts for a specific instrument. Saves to file.
     """
 
-    total_size = len(MOODS) * len(GENRES) * len(TEMPOS) * len(COMPOSITIONS)
     prompts = []
 
-    for mood in MOODS:
-        for genre in GENRES:
-            for composition in COMPOSITIONS:
-                for tempo in TEMPOS:
-                    prompt = generate_prompt(mood, genre, composition, instrument, tempo)
-                    prompts.append(prompt)
+    for verb in VERBS:
+        for mood in MOODS:
+            for genre in GENRES:
+                for composition in COMPOSITIONS:
+                    for tempo in TEMPOS:
+                        prompt = generate_prompt(verb, mood, genre, composition, instrument, tempo)
+                        prompts.append(prompt)
 
-    assert len(prompts) == total_size, f"Expected {total_size} prompts, but got {len(prompts)}"
+    assert len(prompts) == TOTAL_PROMPTS, f"Expected {TOTAL_PROMPTS} prompts, but got {len(prompts)}"
 
     # Write prompts to a file
     with open(f"{args.output_dir}/prompts_{instrument}.txt", 'w') as f:
@@ -46,12 +48,8 @@ def generate_instrument_prompt(instrument):
 
 
 def main(args):
-    # Example parameters
-
     os.makedirs(args.output_dir, exist_ok=True)
-
-    total_size = len(MOODS) * len(GENRES) * len(INSTRUMENTS) * len(TEMPOS)
-    print(f"Generating {total_size} prompts per instrument ({len(INSTRUMENTS)} instruments)")
+    print(f"Generating {TOTAL_PROMPTS} prompts per instrument ({len(INSTRUMENTS)} instruments)")
 
     for instrument in INSTRUMENTS:
         generate_instrument_prompt(instrument)

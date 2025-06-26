@@ -8,4 +8,4 @@ git+https://github.com/kkoutini/passt_hear21.git
 # git+https://github.com/Marcel-Velez/IE-in-AI-parler-workshop.git
 wandb
 python-dotenv
-
+tqdm

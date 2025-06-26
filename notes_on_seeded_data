@@ -1,0 +1,45 @@
+# seed `1`
+data = torch.load("data/trumpet/seed_1/layer_00_last.pt")
+print(data["X"].shape, data["Y"].shape)
+print(data["layer"], data["instrument"])
+print(data["X"][0], data["Y"][0])
+
+gives
+
+torch.Size([2646, 1024]) torch.Size([2646, 1024])
+0 trumpet
+tensor([ 0.7545, -0.5183,  1.3735,  ...,  0.4880,  0.3421,  0.2904]) tensor([0.3049, 1.1007, 0.2299,  ..., 0.1820, 0.2622, 0.2438])
+
+
+# seed `2`, 1st run (now added things to make deterministic)
+data = torch.load("data/trumpet/seed_2/layer_00_last.pt")
+print(data["X"].shape, data["Y"].shape)
+print(data["layer"], data["instrument"])
+print(data["X"][0], data["Y"][0])
+
+gives
+
+torch.Size([10, 1024]) torch.Size([10, 1024])
+0 trumpet
+tensor([ 0.7474, -0.5238,  1.3778,  ...,  0.4465,  0.3099,  0.2809]) tensor([0.2761, 0.9014, 0.5301,  ..., 0.2311, 0.3561, 0.3037])
+
+
+
+# seed `2`, 2nd run (now added things to make deterministic)
+data = torch.load("data/trumpet/seed_2/layer_00_last.pt")
+print(data["X"].shape, data["Y"].shape)
+print(data["layer"], data["instrument"])
+print(data["X"][0], data["Y"][0])
+
+gives
+
+torch.Size([10, 1024]) torch.Size([10, 1024])
+0 trumpet
+tensor([ 0.7612, -0.5230,  1.3877,  ...,  0.4904,  0.3405,  0.2527]) tensor([0.3251, 0.4933, 0.4774,  ..., 0.4594, 0.2695, 0.3127])
+
+
+
+# seed `2`, 3rd run
+torch.Size([10, 1024]) torch.Size([10, 1024])
+0 trumpet
+tensor([ 0.7612, -0.5230,  1.3877,  ...,  0.4904,  0.3405,  0.2527]) tensor([0.3251, 0.4933, 0.4774,  ..., 0.4594, 0.2695, 0.3127])

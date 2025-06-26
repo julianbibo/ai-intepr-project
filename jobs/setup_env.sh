@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --output=~/ai-intepr-project/logs/%x/%j.log
+#SBATCH --output=/home/scur1188/ai-intepr-project/logs/%x/%j.log
 #SBATCH --partition=genoa
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -26,4 +26,3 @@ if [[ -z "$VIRTUAL_ENV" ]]; then
     echo "Error: Virtual environment is not activated."
     exit 1
 fi
-

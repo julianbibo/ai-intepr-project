@@ -5,7 +5,7 @@
 #SBATCH --ntasks=1
 #SBATCH --gpus=0
 #SBATCH --cpus-per-task=1
-#SBATCH --time=00:20:00
+#SBATCH --time=00:05:00
 
 cd ~/ai-intepr-project
 module purge
@@ -15,4 +15,4 @@ source activate myenv
 
 ############################################################
 
-pip install tqdm
+python src/load_training_data.py
